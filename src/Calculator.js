@@ -3,26 +3,29 @@ import './style.css'
 
 class Calculator extends React.Component {
 
+  //return screen to Zero
   clearScreen(){
     this.props.clearScreen();
   }
 
+  // +/- button
   toggleSign(){
     this.props.toggleSign();
   }
 
+  //call calculatePercent function using properties
   calculatePercent(){
     this.props.calculatePercent();
   }
-
+  //call typeDot function using properties
   typeDot(dot){
     this.props.typeDot(dot);
   }
-
+   //call typeDigit function using properties
   typeDigit(screenInput){
-    this.props.typeDigit(screenInput);
+    this.props.typeDigit(screenInput); //passing screen value
   }
-
+   //call makeOperation function using properties
   makeOperation(nextOperator){
     this.props.makeOperation(nextOperator);
   }
