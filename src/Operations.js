@@ -1,9 +1,8 @@
-//todo: add proptypes, make screen responsive, add comments
-
 import React from 'react'
 import './style.css'
 import Calculator from './Calculator'
 import Screen from './Screen'
+import PropTypes from 'prop-types'
 
 class Operations extends React.Component{
   constructor(){
@@ -14,7 +13,7 @@ class Operations extends React.Component{
       operator: null,
       value: null
     }
-
+    // function binding
     this.typeDigit = this.typeDigit.bind(this);
     this.clearScreen = this.clearScreen.bind(this);
     this.toggleSign = this.toggleSign.bind(this);
@@ -24,7 +23,6 @@ class Operations extends React.Component{
   }//constructor
 
   typeDigit(screenInput){
-    //console.log(screenInput)
     let currentDigit = this.state.screenInput;
     let pendingOperation = this.state.pendingOperation;
     let newDigit = String(screenInput);
@@ -87,7 +85,7 @@ class Operations extends React.Component{
     }
 
     if(value == null){
-      //no previous value, hit an operator key
+      //if there is no previous value, hit an operator key
       this.setState({value: nextValue})
     } else if(operator){
       const currentValue = value || 0
@@ -103,18 +101,28 @@ class Operations extends React.Component{
     const screenInput = this.state.screenInput;
 
     return(
+      //render two components
       <div>
-        <Screen screenInput={screenInput} />
+        <Screen
+          screenInput={screenInput}
+        />
 
-        <Calculator clearScreen={this.clearScreen}
+        <Calculator
+          clearScreen={this.clearScreen}
           toggleSign={this.toggleSign}
           calculatePercent={this.calculatePercent}
           typeDot={this.typeDot}
           typeDigit={this.typeDigit}
-          makeOperation={this.makeOperation} />
-        </div>
-      )
-    }
+          makeOperation={this.makeOperation}
+        />
+      </div>
+    )
   }
+}
 
-  export default Operations;
+Operations.propTypes = {
+  screenInput: PropTypes.number
+}
+
+
+export default Operations;
